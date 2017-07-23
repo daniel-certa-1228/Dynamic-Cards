@@ -11,7 +11,6 @@ function clearText(element) {
 
 let storeCards = [];
 let outputDiv = document.getElementById("output-div");
-// let delButtons = document.getElementsByClassName("card-delete");
 
 document.getElementById("create-btn").addEventListener("click", function(event){
 	let userText = getText();
@@ -23,7 +22,6 @@ document.getElementById("create-btn").addEventListener("click", function(event){
 	}  else  {
 
 		storeCards.push(userText);
-		console.log( "storeCards", storeCards );
 		let textArea = document.getElementById("user-text");
 		let postnumber = (storeCards.length)
 		let cardStructure = `<div class="card" id="card--${postnumber}">
@@ -33,31 +31,31 @@ document.getElementById("create-btn").addEventListener("click", function(event){
 						 	</div>`
 
 		outputDiv.innerHTML += cardStructure;
-		// console.log( delButtons );
 		clearText(textArea)	
 	};
 
 });
 
 
-
-
-
 document.getElementById("output-div").addEventListener("click", function(event){
-	console.log("target", event.target);
-	console.log("current-target", event.currentTarget);
+	
 	let target = event.target;
+	// console.log("target", event.target);
+	let targetClass = event.target.className;
+	// console.log( "targetClass", targetClass );
 	let deleteID = event.target.id;
-	console.log( "deleteID", deleteID );
-
+	// console.log( "deleteID", deleteID );
 	let parentDiv = target.parentNode;
-	console.log( "parentDiv", parentDiv );
-	console.log( "parentDiv.parentNode", parentDiv.parentNode );
-	parentDiv.parentNode.removeChild(parentDiv);
+	// console.log( "parentDiv", parentDiv );
+	// console.log( "parentDiv.parentNode", parentDiv.parentNode );
 
+	if (targetClass === "card-delete") {
+		
+		parentDiv.parentNode.removeChild(parentDiv);
+
+	}
 });
 
-// outputDiv
 
 
 
@@ -65,17 +63,4 @@ document.getElementById("output-div").addEventListener("click", function(event){
 
 
 
-
-
-
-
-
-
-//CREATE AND STORE CARD OBJECT IN AN ARRAY
-
-//SPIT TO DOM
-
-///////////////////////////
-
-//UPON PRESSING CARD DELETE BUTTON, IDENTIFY AND REMOVE TARGET CARD FROM DOM
 
